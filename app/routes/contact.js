@@ -1,4 +1,5 @@
 module.exports = function(app) {
-	var controller = app.controllers.contact;
+	let controller = app.controllers.contact;
 	app.get('/contacts', controller.contactsList);
+	app.get('/contacts/:id', controller.contactGet);
 }

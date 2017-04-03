@@ -1,5 +1,5 @@
 module.exports = function() {
-	var controller = {};
+	let controller = {};
 	controller.index = function(req, res) {
 		res.render('index', {nome: 'Express'});
 	};
