@@ -4,16 +4,16 @@ let contacts = [
 	{_id: 3, name: 'Contato Exemplo 3', email: 'cont3@empresa.com.br'}
 ];
 
-module.exports = function() {
+module.exports = () => {
 	let controller = {};
 	
-	controller.contactsList = function(req, res) {
+	controller.contactsList = (req, res) => {
 		res.json(contacts);
 	};
 	
-	controller.contactGet = function(req, res) {
+	controller.getContact = (req, res) => {
 		let contactId = req.params.id;
-		let contact = contacts.filter(function(contact) {
+		let contact = contacts.filter(contact => {
 			return contact._id == contactId;
 		})[0];
 		contact ? res.json(contact) : res.status(404).send('Contact not found!');

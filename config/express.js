@@ -1,19 +1,14 @@
-let express = require('express');
-let load = require('express-load');
-let bodyParser = require('body-parser');
+import express  from 'express';
+import consign from 'consign';
 
-module.exports = function() {
+module.exports = () => {
 	let app = express();
 	
 	app.use(express.static('./public'));
-	app.set('view engine', 'ejs');
-	app.set('views', './app/views');
-	app.use(bodyParser.urlencoded({extended: true}));
-	app.use(bodyParser.json());
-	app.use(require('method-override')());
+	app.set('json spaces', 2);
 	
-	load('models', {cwd:'app'})
-		.then('controllers')
+	consign({cwd: process.cwd()+'/app'})
+		.include('controllers')
 		.then('routes')
 		.into(app);
 
